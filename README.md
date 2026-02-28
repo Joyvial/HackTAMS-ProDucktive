@@ -9,7 +9,8 @@ A productivity website integrated with Canvas that imports assignments and calen
 ## Important Links
 [Canvas LMS](https://developerdocs.instructure.com/services/canvas) <br>
 [Notion API](https://developers.notion.com/guides/get-started/getting-started) <br>
-[RSS Feed](https://rss.app/docs/api)
+[RSS Feed](https://rss.app/docs/api) <br>
+[Public IP Address](http://136.114.246.206)
 ## To Do:
 1. Canvas Integration
 2. The Actual Website
