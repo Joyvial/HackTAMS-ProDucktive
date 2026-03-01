@@ -13,119 +13,144 @@ function openTab(evt, cityName)
   }
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
+
+  const ducks = document.querySelectorAll(".ducks");
+  const shop = document.querySelector(".shop");
+  const hill = document.querySelector(".hill");
+  const foreground = document.querySelector(".foreground");
+
+if (cityName === "School" || cityName === "Personal") 
+{
+    ducks.forEach(duck => duck.style.display = "block");
+    if (shop) shop.style.display = "block";
+    if (hill) hill.style.display = "block";
+    if (foreground) foreground.style.display = "block";
+} 
+else 
+{
+    ducks.forEach(duck => duck.style.display = "none");
+    if (shop) shop.style.display = "none";
+    if (hill) hill.style.display = "none";
+    if (foreground) foreground.style.display = "none";
+}
 }
 
 async function checkServer() {
-        console.log("Button clicked");
-
-        try {
-            const response = await fetch("https://producktionserver.sylvanbuckwilliams.com/api/dueThisMonth");
-
-            console.log("Raw response:", response);
-
-            if (!response.ok) 
-            {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-            }
-
-            const data = await response.json();
-            return data;
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    }
-
-let studentData = null;
-
-async function getInfo() 
-{
-  studentData = await checkServer();
-
-  console.log('studentData object:', studentData);
-  const output = document.getElementById('jsonOutput');
-  if (!output) 
-  {
-    return;
-  }
-
-  if (Array.isArray(studentData)) 
-  {
-    const days = [];
-    studentData.forEach(course => 
-    {
-      if (course && Array.isArray(course.assignments)) 
-      {
-        course.assignments.forEach(a => 
-        {
-          if (a && typeof a.days_remaining !== 'undefined') 
-          {
-            days.push(a.days_remaining);
-          }
-        });
-      }
-    });
-    output.textContent = days.join(', ');
-
-    const schoolTable = document.getElementById('schoolTable');
-    if (schoolTable) 
-    {
-      while (schoolTable.rows.length > 1) 
-      {
-        schoolTable.deleteRow(1);
-      }
-      studentData.forEach((course, courseIdx) => 
-      {
-        if (course && Array.isArray(course.assignments)) 
-        {
-          course.assignments.forEach((a, assignIdx) => 
-          {
-            const row = schoolTable.insertRow();
-            row.dataset.type = 'server';
-            row.dataset.courseIdx = courseIdx;
-            row.dataset.assignIdx = assignIdx;
-            row.innerHTML = `
-              <td><p>${course.course_name}</p></td>
-              <td><p>${a.name}</p></td>
-              <td><p></p></td>
-              <td><p>${a.due}</p></td>
-              <td><input type="checkbox" class="deleteCheckbox"></td>
-            `;
-          });
-        }
-      });
-      
-      const localAssignments = getLocalAssignments();
-      localAssignments.forEach((a, idx) => 
-      {
-        const row = schoolTable.insertRow();
-        row.dataset.type = 'local';
-        row.dataset.localIdx = idx;
-        row.innerHTML = `
-          <td><p>${a.className}</p></td>
-          <td><p>${a.assignmentName}</p></td>
-          <td><p></p></td>
-          <td><p>${a.dueDate}</p></td>
-          <td><input type="checkbox" class="deleteCheckbox"></td>
-        `;
-      });
-      
-      setupCheckboxes();
-    }
-  } else if (studentData && typeof studentData.days_remaining !== 'undefined') 
-  {
-    output.textContent = studentData.days_remaining;
-  } 
-  else if (studentData && typeof studentData.name !== 'undefined') 
-  {
-    output.textContent = studentData.name;
-  } 
-  else 
-  {
-    output.textContent = JSON.stringify(studentData, null, 2);
+  console.log("Fetching server data...");
+  try {
+    const response = await fetch("https://producktionserver.sylvanbuckwilliams.com/api/dueThisMonth");
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+    const data = await response.json();
+    console.log("Server data received:", data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching from server:", error);
+    return null;
   }
 }
 
-window.addEventListener('load', getInfo);
+async function getInfo() {
+  const schoolTable = document.getElementById('schoolTable');
+  if (!schoolTable) {
+    console.error('schoolTable not found');
+    return;
+  }
+
+  // Clear existing rows (except header)
+  while (schoolTable.rows.length > 1) {
+    schoolTable.deleteRow(1);
+  }
+
+  // 1️⃣ Populate local assignments immediately
+  const localAssignments = getLocalAssignments();
+  localAssignments.forEach((a, idx) => {
+    const row = schoolTable.insertRow();
+    row.dataset.type = 'local';
+    row.dataset.localIdx = idx;
+    row.innerHTML = `
+      <td><p>${a.className}</p></td>
+      <td><p>${a.assignmentName}</p></td>
+      <td><p></p></td>
+      <td><p>${a.dueDate}</p></td>
+      <td><input type="checkbox" class="deleteCheckbox"></td>
+    `;
+  });
+
+  setupCheckboxes();
+
+  // 2️⃣ Fetch server data asynchronously
+  try {
+    const serverData = await checkServer();
+    if (!serverData || !Array.isArray(serverData)) return;
+
+    serverData.forEach((a, idx) => {
+      const row = schoolTable.insertRow();
+      row.dataset.type = 'server';
+      row.dataset.assignIdx = idx;
+      row.innerHTML = `
+        <td><p>${a.course_name}</p></td>
+        <td><p>${a.name}</p></td>
+        <td><p></p></td>
+        <td><p>${a.due}</p></td>
+        <td><input type="checkbox" class="deleteCheckbox"></td>
+      `;
+    });
+
+    setupCheckboxes();
+  } catch (err) {
+    console.error('Error fetching server data:', err);
+  }
+}
+
+async function fetchCompleted() {
+  try {
+    const resp = await fetch("https://producktionserver.sylvanbuckwilliams.com/api/getCompleted");
+    console.log("Completed response:", resp);
+    if (!resp.ok) {
+      throw new Error(`HTTP error! Status: ${resp.status}`);
+    }
+    const data = await resp.json();
+
+    const container = document.getElementById('classesList');
+    if (!container) return;
+
+    // Clear any existing content
+    container.innerHTML = '';
+
+    if (Array.isArray(data)) {
+      data.forEach(item => {
+        const entry = document.createElement('div');
+        entry.className = 'classEntry';
+
+        const gradeDiv = document.createElement('div');
+        gradeDiv.className = 'classInfo.grade';
+        gradeDiv.textContent = (typeof item.percent_completed !== 'undefined') ? `${item.percent_completed}%` : '';
+
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'classInfo.name';
+        nameDiv.textContent = item.course_name || '';
+
+        entry.appendChild(gradeDiv);
+        entry.appendChild(nameDiv);
+        container.appendChild(entry);
+      });
+    } else {
+      container.textContent = JSON.stringify(data);
+    }
+  } catch (error) {
+    console.error('Error fetching completed:', error);
+  }
+}
+
+window.addEventListener('load', function() {
+  // Open School tab immediately
+  const schoolTab = document.querySelector("button.tablinks[onclick=\"openTab(event, 'School')\"]");
+  if (schoolTab) schoolTab.click();
+
+  // Populate assignments asynchronously
+  getInfo();
+  fetchCompleted();
+});
 
 function getLocalAssignments() 
 {
@@ -157,7 +182,7 @@ function addAssignmentRow()
   if (schoolTable) 
   {
     const row = schoolTable.insertRow();
-    const localIdx = getLocalAssignments().length - 1; // index of the newly added item
+    const localIdx = getLocalAssignments().length - 1;
     row.dataset.type = 'local';
     row.dataset.localIdx = localIdx;
     row.innerHTML = `
@@ -174,14 +199,16 @@ function addAssignmentRow()
 function setupCheckboxes() 
 {
   const checkboxes = document.querySelectorAll('.deleteCheckbox');
-  checkboxes.forEach(checkbox => {
-    checkbox.addEventListener('change', function(e) {
+  checkboxes.forEach(checkbox => 
+    {
+    checkbox.addEventListener('change', function(e) 
+    {
       if (this.checked) {
         const row = this.closest('tr');
         const type = row.dataset.type;
         
-        if (type === 'local') {
-          // remove from localStorage
+        if (type === 'local') 
+        {
           const idx = parseInt(row.dataset.localIdx);
           const local = getLocalAssignments();
           local.splice(idx, 1);
@@ -194,62 +221,51 @@ function setupCheckboxes()
   });
 }
 
-document.addEventListener('DOMContentLoaded', function() 
+document.addEventListener("DOMContentLoaded", function () 
 {
-  var firstTab = document.querySelector('.tablinks');
-  if (firstTab) 
-  {
-    firstTab.click();
-  }
+  const ducks = document.querySelectorAll(".ducks");
 
-  const images = document.querySelectorAll('.ducks');
-  images.forEach(img => 
+  ducks.forEach((duck) => 
+  {
+    let direction = Math.random() < 0.5 ? -1 : 1;
+    let speed = 0.3 + Math.random() * 1.2;
+    let position = 0;
+
+    duck.style.position = duck.style.position || 'absolute';
+
+    const screenWidth = window.innerWidth;
+    const duckWidth = duck.offsetWidth || duck.getBoundingClientRect().width || 50;
+    position = Math.random() * Math.max(0, screenWidth - duckWidth);
+    duck.style.left = position + "px";
+
+    function animateDuck() 
     {
-      if (!img.complete) 
-      {
-        img.addEventListener('load', () => setupDuck(img));
-      } 
-      else
-      {
-      setupDuck(img);
-      }
-    });
-});
+      const sw = window.innerWidth;
+      const dw = duck.offsetWidth || duck.getBoundingClientRect().width || 50;
 
-function setupDuck(img) 
-{
-  img.style.left = Math.random() * (window.innerWidth - img.width) + 'px';
+      if (position <= 0) direction = 1;
+      if (position >= sw - dw) direction = -1;
 
-  let direction = Math.random() < 0.5 ? -1 : 1;
-  const speed = 0.2 + Math.random() * 0.5;
+      position += direction * speed;
+      duck.style.left = position + "px";
+      duck.style.transform = direction === 1 ? "scaleX(-1)" : "scaleX(1)";
 
-  if (img.dataset.altSrc) 
-  {
+      requestAnimationFrame(animateDuck);
+    }
+
     setInterval(() => 
     {
-      const tmp = img.src;
-      img.src = img.dataset.altSrc;
-      img.dataset.altSrc = tmp;
-    }, 1000);
-  }
+      direction = Math.random() < 0.5 ? -1 : 1;
+    }, Math.random() * 3000 + 2000);
 
-  function move() 
-  {
-    let currentLeft = parseFloat(img.style.left) || 0;
-    currentLeft += speed * direction;
-    if (currentLeft <= 0) direction = 1;
-    if (currentLeft >= window.innerWidth - img.width) direction = -1;
-    if (direction === 1) 
+    window.addEventListener('resize', () => 
     {
-        img.classList.add('flipped');
-    } 
-    else 
-    {
-        img.classList.remove('flipped');
-    }
-    img.style.left = currentLeft + 'px';
-    requestAnimationFrame(move);
-  }
+      const sw2 = window.innerWidth;
+      const dw2 = duck.offsetWidth || duck.getBoundingClientRect().width || 50;
+      position = Math.min(position, Math.max(0, sw2 - dw2));
+      duck.style.left = position + 'px';
+    });
 
-  move();
-}
+    animateDuck();
+  });
+});

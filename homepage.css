@@ -97,6 +97,27 @@ p
     margin-left: 10px;
 }
 
+.button 
+{
+  background-color: #FCFF6C;
+  border: 1px solid;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.button:hover
+{
+  background-color: #FEEE6C;
+}
+
 /* ---------| Right Segment |--------- */
 
 .right
@@ -154,7 +175,7 @@ p
   bottom: 5rem;
   width: 40%;
   height: auto;
-  z-index: 7;
+  z-index: 9;
   pointer-events: none;
 }
 
@@ -170,19 +191,22 @@ p
   bottom: 5rem;
   width: 40%;
   height: auto;
-  z-index: 9;
+  z-index: 7;
   pointer-events: auto;
   transition: transform 0.3s ease;
 }
 
 .ducks 
 {
-    position: absolute;
-    bottom: 5rem;
-    width: 120px;
-    height: 120px;
-    transition: left 0.5s linear;
-    z-index: 13;
+  position: fixed;
+  bottom: 5rem;
+  left: 0;
+  width: 120px;
+  height: 120px;
+  z-index: 13;
+  user-select: none;
+  pointer-events: none;
+  will-change: left, transform;
 }
 
 .ducks.flipped 
