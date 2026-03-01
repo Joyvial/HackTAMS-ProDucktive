@@ -158,6 +158,23 @@ p
   pointer-events: none;
 }
 
+.shop button:hover
+{
+  transform: scale(1.1);
+}
+
+.hill
+{
+  position: fixed;
+  right: 0rem;
+  bottom: 5rem;
+  width: 40%;
+  height: auto;
+  z-index: 9;
+  pointer-events: auto;
+  transition: transform 0.3s ease;
+}
+
 .ducks 
 {
     position: absolute;
@@ -168,7 +185,7 @@ p
     z-index: 13;
 }
 
-/* flipped horizontally when moving right */
-.ducks.flipped {
+.ducks.flipped 
+{
     transform: scaleX(-1);
 }

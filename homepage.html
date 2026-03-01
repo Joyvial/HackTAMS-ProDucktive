@@ -17,17 +17,19 @@
         <div class="classInfo.name">
             Math
         </div>
+        <div class="jsonTest">
+            <var id="jsonOutput"></var>
+        </div>
     </div>
     <div class="column middle">
         <h1>To Do</h1>
         <div class="tab">
-            <button class="tablinks" onclick="openCity(event, 'Homework')">Homework</button>
-            <button class="tablinks" onclick="openCity(event, 'Exams')">Exams</button>
+            <button class="tablinks" onclick="openCity(event, 'School')">School</button>
             <button class="tablinks" onclick="openCity(event, 'Personal')">Personal</button>
         </div>
 
-        <div id="Homework" class="tabcontent">
-        <table>
+        <div id="School" class="tabcontent">
+        <table id="schoolTable">
             <tr>
                 <th><p>Class</p></th>
                 <th><p>Assignment</p></th>
@@ -35,22 +37,8 @@
                 <th><p>Due</p></th>
                 <th><p>Done?</p></th>
             </tr>
-            <tr>
-                <td><p>Calculus</p></td>
-                <td><p>Unit 3 Homework</p></td>
-                <td><p>!!</p></td>
-                <td><p>March-3-2026</p></td>
-                <td><input type="checkbox"></td>
-            </tr>
-            <tr>
-                <td><p>General Chemistry</p></td>
-                <td><p>Unit 14 Lecture Review</p></td>
-                <td><p>!</p></td>
-                <td><p>March-5-2026</p></td>
-                <td><input type="checkbox"></td>
-            </tr>
         </table>
-        <button class="addmore">Add item?</button>
+        <button class="addmore" onclick="addAssignmentRow()">Add item?</button>
         </div>
 
         <div id="Exams" class="tabcontent">
@@ -126,7 +114,10 @@
     <img src="Images/The_Horror.png" data-alt-src="Images/The_Horror.png" class="ducks">
     </div>
 
-    <img src="Images/Shop_Hill.png" class="shop"/>
+    <button class="hill" onclick="alert('Button clicked!')">
+        <img src="Images/Hill.png" class="hill"/>
+    </button>
+    <img src="Images/Shop.png" class="shop"/>
     <img src="Images/Foreground_Grass.png" class="foreground"/>
 
 </body>
