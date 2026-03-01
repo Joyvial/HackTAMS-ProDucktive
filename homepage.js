@@ -1,4 +1,4 @@
-function openTab(evt, cityName) 
+function openTab(evt, pageName) 
 {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -11,7 +11,7 @@ function openTab(evt, cityName)
   {
     tablinks[i].className = tablinks[i].className.replace(" active", "");
   }
-  document.getElementById(cityName).style.display = "block";
+  document.getElementById(pageName).style.display = "block";
   evt.currentTarget.className += " active";
 
   const ducks = document.querySelectorAll(".ducks");
@@ -19,7 +19,7 @@ function openTab(evt, cityName)
   const hill = document.querySelector(".hill");
   const foreground = document.querySelector(".foreground");
 
-if (cityName === "School" || cityName === "Personal") 
+if (pageName === "School" || pageName === "Personal") 
 {
     ducks.forEach(duck => duck.style.display = "block");
     if (shop) shop.style.display = "block";
@@ -90,7 +90,6 @@ async function getInfo() {
       row.innerHTML = `
         <td><p>${a.course_name}</p></td>
         <td><p>${a.name}</p></td>
-        <td><p></p></td>
         <td><p>${a.due}</p></td>
         <td><input type="checkbox" class="deleteCheckbox"></td>
       `;
@@ -188,7 +187,6 @@ function addAssignmentRow()
     row.innerHTML = `
       <td><p>${className}</p></td>
       <td><p>${assignmentName}</p></td>
-      <td><p></p></td>
       <td><p>${dueDate}</p></td>
       <td><input type="checkbox" class="deleteCheckbox"></td>
     `;
