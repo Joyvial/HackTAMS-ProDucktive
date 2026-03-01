@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Study Zone</title>
+  <script src="homepage.js"></script>
+  <style>
+    @font-face 
+    {
+    font-family: 'thejAnk';
+    src: URL('Myfont-Regular.ttf') format('truetype');
+    }
+
+    html, body, .tabcontent
+    {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: #b4d9ef;
+    }
+    iframe 
+    {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'Clock')">Clock</button>
+        <button class="tablinks" onclick="openTab(event, 'Asian Mom')">Asian Mom</button>
+        <button class="tablinks" onclick="openTab(event, 'Blank')">Blank Page</button>
+    </div>
+
+    <div id="Clock" class="tabcontent">
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <script src="https://cdn.logwork.com/widget/text.js"></script>
+<a href="https://logwork.com/current-time-in-dallas-united-states-south-dakota" class="clock-widget-text" data-timezone="America/Chicago" data-language="en" data-textcolor="#f5b979" data-background="#b4d9ef" data-digitscolor="#feee6c">Dallas, United States</a>
+    </div>
+
+    <div id="Asian Mom" class="tabcontent">
+        <iframe
+        src="https://www.youtube.com/embed/3RGEo2Kohb8?autoplay=1&loop=1&playlist=3RGEo2Kohb8&loop=1&end=144000"
+        allow="autoplay; encrypted-media; fullscreen"
+        allowfullscreen>
+        </iframe>
+    </div>
+
+</body>
+</html>

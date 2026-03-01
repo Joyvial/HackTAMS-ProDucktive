@@ -1,4 +1,4 @@
-function openCity(evt, cityName) 
+function openTab(evt, cityName) 
 {
   var i, tabcontent, tablinks;
   tabcontent = document.getElementsByClassName("tabcontent");
@@ -127,7 +127,6 @@ async function getInfo()
 
 window.addEventListener('load', getInfo);
 
-// helpers to manage locally-added assignments in localStorage
 function getLocalAssignments() 
 {
   const stored = localStorage.getItem('addedAssignments');
@@ -168,7 +167,6 @@ function addAssignmentRow()
       <td><p>${dueDate}</p></td>
       <td><input type="checkbox" class="deleteCheckbox"></td>
     `;
-    // attach the checkbox listener to the new row
     setupCheckboxes();
   }
 }
@@ -190,7 +188,6 @@ function setupCheckboxes()
           saveLocalAssignments(local);
         }
         
-        // delete the row from the table
         row.remove();
       }
     });
