@@ -20,18 +20,15 @@ function openTab(evt, pageName)
   const foreground = document.querySelector(".foreground");
 
 if (pageName === "School" || pageName === "Personal") 
-if (cityName === "Blank") 
 {
     ducks.forEach(duck => duck.style.display = "block");
     if (shop) shop.style.display = "block";
     if (clouds) clouds.style.display = "block";
     if (foreground) foreground.style.display = "block";
-} 
-else 
-{
+} else {
     ducks.forEach(duck => duck.style.display = "none");
     if (shop) shop.style.display = "none";
-    if (clouds) hill.style.display = "none";
+    if (clouds) clouds.style.display = "none";
     if (foreground) foreground.style.display = "none";
 }
 }
