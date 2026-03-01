@@ -1,10 +1,18 @@
 /* ----------| Page Stylings |---------- */
 
+@font-face 
+{
+  font-family: 'thejAnk';
+  src: URL('') format('truetype');
+}
+
 html, body
 {
   margin: 0;
   padding: 0;
   background-color: #B4D9EF;
+  font: inherit;
+  font-family: thejAnk
 }
 
 * 
@@ -23,7 +31,7 @@ html, body
 
 .left
 {
-    background-color: #fcfbf5;
+    background-color: #f0edda;
     width: 25%;
     text-align: center;
     border-right: 3px solid #f0edda;
@@ -43,7 +51,7 @@ html, body
   overflow: hidden;
   border: 1px solid black;
   border-bottom: none;
-  background-color: #f1f1f1;
+  background-color: #f0edda;
   width: fit-content;
 }
 
@@ -74,13 +82,19 @@ html, body
   display: none;
   padding: 6px 12px;
   border: 1px solid black;
-  background: #fcfbf5;
+  background: #f0edda;
 }
 
 table, th,td
 {
+    width:690px;
     border: 1px solid black;
     border-collapse: collapse;
+}
+
+p
+{
+    margin-left: 10px;
 }
 
 /* ---------| Right Segment |--------- */
@@ -95,7 +109,7 @@ table, th,td
 .classmates
 {
     margin-top: 10px;
-    background-color: #fcfbf5;
+    background-color: #f0edda;
     border: 3px solid #f0edda;
     padding: 14px 16px;
 }
@@ -119,4 +133,42 @@ table, th,td
 .points img {
     height: 1.5em;
     width: auto;
+}
+
+/* ----------| Ducks |---------- */
+.foreground 
+{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.shop
+{
+  position: fixed;
+  right: 0rem;
+  bottom: 5rem;
+  width: 40%;
+  height: auto;
+  z-index: 7;
+  pointer-events: none;
+}
+
+.ducks 
+{
+    position: absolute;
+    bottom: 5rem;
+    width: 120px;
+    height: 120px;
+    transition: left 0.5s linear;
+    z-index: 13;
+}
+
+/* flipped horizontally when moving right */
+.ducks.flipped {
+    transform: scaleX(-1);
 }
