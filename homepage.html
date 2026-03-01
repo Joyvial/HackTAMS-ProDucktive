@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <title>ProDucktive</title>
+        <link rel="stylesheet" href="homepage.css">
+        <script src="homepage.js"></script>
+    </head>
+    <body>
+
+    <div class="column left">
+        <h1>Classes</h1>
+        <div class="classInfo.grade">
+            85%
+        </div>
+        <div class="classInfo.name">
+            Math
+        </div>
+        <div class="jsonTest">
+            <var id="jsonOutput"></var>
+        </div>
+    </div>
+    <div class="column middle">
+        <h1>To Do</h1>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'School')">School</button>
+            <button class="tablinks" onclick="openTab(event, 'Personal')">Personal</button>
+        </div>
+
+        <div id="School" class="tabcontent">
+        <table id="schoolTable">
+            <tr>
+                <th><p>Class</p></th>
+                <th><p>Assignment</p></th>
+                <th><p>Priority</p></th>
+                <th><p>Due</p></th>
+                <th><p>Done?</p></th>
+            </tr>
+        </table>
+        <button class="addmore" onclick="addAssignmentRow()">Add item?</button>
+        </div>
+
+        <div id="Exams" class="tabcontent">
+        <table>
+            <tr>
+                <th>Class</th>
+                <th>Units</th>
+                <th>Priority</th>
+                <th>Date</th>
+            </tr>
+            <tr>
+                <td>Biology</td>
+                <td>Units 4-5</td>
+                <td>!!!</td>
+                <td>March-13-2026</td>
+            </tr>
+            <tr>
+                <td>Calculus</td>
+                <td>Units 1-3</td>
+                <td>!</td>
+                <td>March-17-2026</td>
+            </tr>
+        </table>
+        <button class="addmore">Add item?</button>
+        </div>
+
+        <div id="Personal" class="tabcontent">
+        <table class="todoTable">
+            <tr>
+                <th>Item</th>
+                <th>Priority</th>
+                <th>Complete By</th>
+                <th>Done?</th>
+            </tr>
+            <tr>
+                <td>Clean Room</td>
+                <td>!!!</td>
+                <td>March-1-2026</td>
+                <td><input type="checkbox"></td>
+            </tr>
+            <tr>
+                <td>Email Professor Doe</td>
+                <td>!</td>
+                <td>March-10-2026</td>
+                <td><input type="checkbox"></td>
+            </tr>
+        </table>
+        <button class="addmore">Add item?</button>
+        </div>
+        <button class="toStudyZone">Study Zone</button>
+    </div>
+
+    <div class="column right">
+        <div class="points">
+            <h1>5,025</h1>
+            <img src="Images/Coin_Symbol.png" width="50" height="50" alt="Coin">
+        </div>
+        
+        <div class="classmates">
+            <h2>Classmates</h2>
+            <hr>
+            <p>Jessica Dalton</p>
+            <p>Zack Brown</p>
+        </div>
+    </div>
+
+    <div id="ducks">
+    <img src="Images/Pirate_Duck.png" data-alt-src="Images/Pirate_Duck_L.png" class="ducks">
+    <img src="Images/Default_Duck.png" data-alt-src="Images/Default_Duck_L.png" class="ducks">
+    <img src="Images/Dignified_Duck.png" data-alt-src="Images/Dignified_Duck_L.png" class="ducks">
+    <img src="Images/Peach_Duck.png" data-alt-src="Images/Peach_Duck_L.png" class="ducks">
+    <img src="Images/Weeb_Duck.png" data-alt-src="Images/Weeb_Duck_L.png" class="ducks">
+    <img src="Images/The_Horror.png" data-alt-src="Images/The_Horror.png" class="ducks">
+    </div>
+
+    <button class="hill" onclick="alert('Button clicked!')">
+        <img src="Images/Hill.png" class="hill"/>
+    </button>
+    <img src="Images/Shop.png" class="shop"/>
+    <img src="Images/Foreground_Grass.png" class="foreground"/>
+
+</body>
+</html>
