@@ -59,7 +59,7 @@ html, body
 {
   background-color: #FCFF6C;
   float: left;
-  border: none;
+  border-radius: 15px;
   outline: none;
   cursor: pointer;
   padding: 14px 16px;
@@ -133,7 +133,7 @@ p
 {
     margin-top: 10px;
     background-color: #f0edda;
-    border: 3px solid #f0edda;
+    border-radius: 3px solid #f0edda;
     padding: 14px 16px;
 }
 .classmates h2
