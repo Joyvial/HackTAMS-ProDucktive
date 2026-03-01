@@ -70,7 +70,6 @@ async function getInfo() {
     row.innerHTML = `
       <td><p>${a.className}</p></td>
       <td><p>${a.assignmentName}</p></td>
-      <td><p></p></td>
       <td><p>${a.dueDate}</p></td>
       <td><input type="checkbox" class="deleteCheckbox"></td>
     `;

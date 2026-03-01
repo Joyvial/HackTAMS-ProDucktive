@@ -170,7 +170,7 @@ p
   pointer-events: none;
 }
 
-.shop
+.house
 {
   position: fixed;
   right: 0rem;
@@ -181,21 +181,28 @@ p
   pointer-events: none;
 }
 
-.shop button:hover
+.shop img:hover
 {
   transform: scale(1.1);
 }
 
-.hill
+.shop
 {
   position: fixed;
-  right: 0rem;
-  bottom: 5rem;
-  width: 40%;
+  background: none;
+  border: none;
+  right: -5.5rem;
+  bottom: 1.5rem;
+  width: 30%;
   height: auto;
   z-index: 7;
   pointer-events: auto;
   transition: transform 0.3s ease;
+}
+
+.shop img
+{
+  width: 60%;
 }
 
 .ducks 
