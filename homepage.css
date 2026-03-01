@@ -3,7 +3,7 @@
 @font-face 
 {
   font-family: 'thejAnk';
-  src: URL('') format('truetype');
+  src: URL('Myfont-Regular.ttf') format('truetype');
 }
 
 html, body
