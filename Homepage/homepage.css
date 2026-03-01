@@ -1,0 +1,174 @@
+/* ----------| Page Stylings |---------- */
+
+@font-face 
+{
+  font-family: 'thejAnk';
+  src: URL('Myfont-Regular.ttf') format('truetype');
+}
+
+html, body
+{
+  margin: 0;
+  padding: 0;
+  background-color: #B4D9EF;
+  font: inherit;
+  font-family: thejAnk
+}
+
+* 
+{
+  box-sizing: border-box;
+}
+
+.column 
+{
+  float: left;
+  padding: 10px;
+  height: 90vh;
+}
+
+/* ----------| Left Segment |---------- */
+
+.left
+{
+    background-color: #f0edda;
+    width: 25%;
+    text-align: center;
+    border-right: 3px solid #f0edda;
+}
+
+/* ---------| Middle Segment |--------- */
+
+.middle
+{
+    margin-left: 5vh;
+    text-align: left;
+    width: 50%;
+}
+
+.tab 
+{
+  overflow: hidden;
+  border: 1px solid black;
+  border-bottom: none;
+  background-color: #f0edda;
+  width: fit-content;
+}
+
+.tab button 
+{
+  background-color: #FCFF6C;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.tab button:hover 
+{
+  background-color: #FEEE6C;
+}
+
+.tab button.active 
+{
+  background-color: #F5B979;
+}
+
+.tabcontent 
+{
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid black;
+  background: #f0edda;
+}
+
+table, th,td
+{
+    width:690px;
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+p
+{
+    margin-left: 10px;
+}
+
+/* ---------| Right Segment |--------- */
+
+.right
+{
+    text-align: right;
+    width: 20%;
+    margin-top: 80px;
+}
+
+.classmates
+{
+    margin-top: 10px;
+    background-color: #f0edda;
+    border: 3px solid #f0edda;
+    padding: 14px 16px;
+}
+.classmates h2
+{
+    text-align: center;
+}
+
+.points {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.points h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.points img {
+    height: 1.5em;
+    width: auto;
+}
+
+/* ----------| Ducks |---------- */
+.foreground 
+{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.shop
+{
+  position: fixed;
+  right: 0rem;
+  bottom: 5rem;
+  width: 40%;
+  height: auto;
+  z-index: 7;
+  pointer-events: none;
+}
+
+.ducks 
+{
+    position: absolute;
+    bottom: 5rem;
+    width: 120px;
+    height: 120px;
+    transition: left 0.5s linear;
+    z-index: 13;
+}
+
+/* flipped horizontally when moving right */
+.ducks.flipped {
+    transform: scaleX(-1);
+}
