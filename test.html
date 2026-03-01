@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Frontend Test</title>
+</head>
+<body>
+
+<button id="helloBtn">Call Backend</button>
+
+<script>
+document.getElementById("helloBtn").addEventListener("click", () => {
+    fetch("https://producktionserver.sylvanbuckwilliams.com/api/hello")
+        .then(response => response.json())
+        .then(data => {
+            console.log("Server response:", data);
+        })
+        .catch(error => {
+            console.error("Error:", error);
+        });
+});
+</script>
+
+</body>
+</html>
