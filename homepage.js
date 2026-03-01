@@ -70,7 +70,6 @@ async function getInfo() {
     row.innerHTML = `
       <td></td>
       <td><p>${a.assignmentName}</p></td>
-      <td><p></p></td>
       <td><p>${a.dueDate}</p></td>
       <td><input type="checkbox" class="deleteCheckbox"></td>
     `;
@@ -90,7 +89,6 @@ async function getInfo() {
       row.innerHTML = `
         <td><p>${a.course_name}</p></td>
         <td><p>${a.name}</p></td>
-        <td><p></p></td>
         <td><p>${a.due}</p></td>
         <td><input type="checkbox" class="deleteCheckbox"></td>
       `;
