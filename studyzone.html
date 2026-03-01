@@ -26,6 +26,68 @@
       border: none;
       display: block;
     }
+
+    .foreground 
+    {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+      z-index: 10;
+      pointer-events: none;
+      display: none;
+    }
+
+    .shop
+    {
+      position: fixed;
+      right: 0rem;
+      bottom: 5rem;
+      width: 40%;
+      height: auto;
+      z-index: 9;
+      pointer-events: none;
+      display: none;
+    }
+
+    .shop button:hover
+    {
+      transform: scale(1.1);
+    }
+
+    .hill
+    {
+      position: fixed;
+      right: 0rem;
+      bottom: 5rem;
+      width: 40%;
+      height: auto;
+      z-index: 7;
+      pointer-events: auto;
+      transition: transform 0.3s ease;
+      display: none;
+    }
+
+    .ducks 
+    {
+      position: fixed;
+      bottom: 5rem;
+      left: 0;
+      width: 120px;
+      height: 120px;
+      z-index: 13;
+      user-select: none;
+      pointer-events: none;
+      will-change: left, transform;
+      display: none;
+    }
+
+    .ducks.flipped 
+    {
+        transform: scaleX(-1);
+    }
+
   </style>
 </head>
 <body>
@@ -54,6 +116,19 @@
         allow="autoplay; encrypted-media; fullscreen"
         allowfullscreen>
         </iframe>
+    </div>
+
+    <div id="Blank" class="tabcontent">
+      <div id="ducks">
+      <img src="Images/Pirate_Duck.png" class="ducks">
+      <img src="Images/Default_Duck.png" class="ducks">
+      <img src="Images/Dignified_Duck.png" class="ducks">
+      <img src="Images/Peach_Duck.png" class="ducks">
+      <img src="Images/Weeb_Duck.png" class="ducks">
+      </div>
+
+      <img src="Images/Shop_Hill.png" class="shop"/>
+      <img src="Images/Foreground_Grass.png" class="foreground"/>
     </div>
 
 </body>
